@@ -1,0 +1,9 @@
+{%	extends	'company/base.html'	%}
+{%	block	content	%}
+<div class="customer">
+
+{% for order in orders %}
+<ul>{{  order.orderid }}</ul>
+{% endfor %}
+</div>
+{%	endblock	%}

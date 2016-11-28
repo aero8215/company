@@ -1,0 +1,9 @@
+{%	extends	'company/base.html'	%}
+{%	block	content	%}
+<div class="employees">
+
+{% for employee in employees %}
+<ul>{{  employee.lastname }},{{  employee.firstname }} </ul>
+{% endfor %}
+</div>
+{%	endblock	%}
