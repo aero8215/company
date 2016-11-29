@@ -9,7 +9,7 @@
 <tr>
 <th>Firstname</th>
 <th>Lastname</th>
-<th>Hire Date</th>
+<th> </th>
 </tr>
 </thead>
 <tbody>
@@ -17,7 +17,7 @@
 <tr>
 <td>{{ employee.firstname }}</td>
 <td>{{ employee.lastname }}</td>
-<td>{{ employee.hiredate }}</td>
+<td><a	href="{% url 'employee_detail' pk=employee.pk %}"><span class="glyphicon glyphicon-search"></span> </a> </td>
 </tr>
 {% endfor %}
 
