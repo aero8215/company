@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Customers, Orders, Employees
+from .models import Customers, Orders, Employees, Shippers
 
 
 # Create your views here.
@@ -13,6 +13,10 @@ def customers(request):
 
 def orders(request):
     orders = Orders.objects.all()
+    for order in orders:
+        order.companyname = Customers.objects.get(pk=order.customerid).companyname
+        order.employeename = Employees.objects.get(pk=order.employeeid).fullname
+        order.shipcompany = Shippers.objects.get(pk=order.shipvia).companyname
     context = {'orders': orders}
     return render(request,"company/orders.html", context)
 

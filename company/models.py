@@ -36,6 +36,7 @@ class Employees(models.Model):
     address = models.CharField(db_column='Address', max_length=40, blank=True, null=True)  # Field name made lowercase.
     hiredate = models.CharField(db_column='HireDate', max_length=25, blank=True, null=True)  # Field name made lowercase.
 
+
     class Meta:
         managed = False
         db_table = 'Employees'
@@ -44,21 +45,9 @@ class Employees(models.Model):
     def __str__(self):
         return ' '.join([self.firstname, self.lastname])
 
-
-class Orderdetails(models.Model):
-    orderdetailid = models.IntegerField(db_column='OrderDetailID', primary_key=True, blank=True)  # Field name made lowercase.
-    orderid = models.IntegerField(db_column='OrderID', blank=True, null=True)  # Field name made lowercase.
-    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
-    unitprice = models.FloatField(db_column='UnitPrice', blank=True, null=True)  # Field name made lowercase.
-    quantity = models.IntegerField(db_column='Quantity', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'OrderDetails'
-        verbose_name_plural = "OrderDetails"
-
-    def __str__(self):
-        return ' - '.join(map(str,[self.orderid, self.orderdetailid]))
+    @property
+    def fullname(self):
+        return self.firstname + ' ' + self.lastname
 
 class Orders(models.Model):
     orderid = models.IntegerField(db_column='OrderID', primary_key=True, blank=True)  # Field name made lowercase.
@@ -75,8 +64,26 @@ class Orders(models.Model):
         db_table = 'Orders'
         verbose_name_plural = "Orders"
 
+
     def __str__(self):
         return str(self.orderid)
+
+
+
+class Orderdetails(models.Model):
+    orderdetailid = models.IntegerField(db_column='OrderDetailID', primary_key=True, blank=True)  # Field name made lowercase.
+    orderid = models.IntegerField(db_column='OrderID', blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+    unitprice = models.FloatField(db_column='UnitPrice', blank=True, null=True)  # Field name made lowercase.
+    quantity = models.IntegerField(db_column='Quantity', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'OrderDetails'
+        verbose_name_plural = "OrderDetails"
+
+    def __str__(self):
+        return ' - '.join(map(str,[self.orderid, self.orderdetailid]))
 
 class Shippers(models.Model):
     shipperid = models.IntegerField(db_column='ShipperID', primary_key=True, blank=True)  # Field name made lowercase.

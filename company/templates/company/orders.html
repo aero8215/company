@@ -2,8 +2,38 @@
 {%	block	content	%}
 <div class="customer">
 
-{% for order in orders %}
-<ul>{{  order.orderid }}</ul>
-{% endfor %}
+
+<div class="container">
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Employee</th>
+        <th>Order Date</th>
+        <th>Required Date</th>
+        <th>Shipped Date</th>
+        <th>Shipped Via</th>
+        <th>Freight Charge</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+      <tr>
+        <td>{{ order.orderid }}</td>
+        <td>{{ order.companyname }}</td>
+        <td>{{ order.employeename }}</td>
+          <td>{{ order.orderdate }}</td>
+          <td>{{ order.requireddate }}</td>
+          <td>{{ order.shippeddate }}</td>
+          <td>{{ order.shipcompany }}</td>
+          <td>{{ order.freightcharge }}</td>
+      </tr>
+    {% endfor %}
+
+    </tbody>
+  </table>
 </div>
+
+
 {%	endblock	%}
