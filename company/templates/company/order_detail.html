@@ -4,13 +4,14 @@
 <div class="order">
 <h4>
 {% if orders %}
-    <table class="table table-bordered">
+    <table class="table">
         <thead>
       <tr>
         <th>Suborder</th>
         <th>Product ID</th>
         <th>Price</th>
         <th>Quantity</th>
+        <th>Subtotal</th>
       </tr>
     </thead>
             <tbody>
@@ -20,8 +21,10 @@
     <tr><td> {{order.orderdetailid}} </td>
     <td> {{ order.productid }}</td>
     <td> {{ order.unitprice }} </td>
-    <td> {{ order.quantity }}</td></tr>
+    <td> {{ order.quantity }}</td>
+    <td> {{ order.subtotal }}</td></tr>
             {% endfor %}
+    <tr><td><h3>  <span class="label label-primary">Order Total</span> </h3></td><td></td><td></td><td></td><td><h3>{{ total }}</h3></td>   </tr>
             </tbody>
     </table>
 {% else %}

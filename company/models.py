@@ -49,6 +49,7 @@ class Employees(models.Model):
     def fullname(self):
         return self.firstname + ' ' + self.lastname
 
+
 class Orders(models.Model):
     orderid = models.IntegerField(db_column='OrderID', primary_key=True, blank=True)  # Field name made lowercase.
     customerid = models.IntegerField(db_column='CustomerID', blank=True, null=True)  # Field name made lowercase.
@@ -85,6 +86,10 @@ class Orderdetails(models.Model):
     def __str__(self):
         return ' - '.join(map(str,[self.orderid, self.orderdetailid]))
 
+    @property
+    def subtotal(self):
+        return float(format(self.unitprice * self.quantity,'.2f'))
+
 class Shippers(models.Model):
     shipperid = models.IntegerField(db_column='ShipperID', primary_key=True, blank=True)  # Field name made lowercase.
     companyname = models.CharField(db_column='CompanyName', max_length=60, blank=True, null=True)  # Field name made lowercase.
@@ -97,6 +102,7 @@ class Shippers(models.Model):
 
     def __str__(self):
         return self.companyname
+
 
 class DjangoMigrations(models.Model):
     id = models.IntegerField(primary_key=True)  # AutoField?

@@ -9,7 +9,6 @@ def customers(request):
     context = {'customers': customers}
     context['title'] = Path(request.path).parts[-1].title()
     return render(request,"company/customers.html", context)
-    #return HttpResponse("Hello, world. You're at the polls index.")
 
 
 def orders(request):
@@ -37,8 +36,11 @@ def employee_detail(request, pk):
     context['title'] = "employee details".title()
     return render(request, 'company/employee_detail.html', context)
 
+
 def order_detail(request, pk):
     orders = Orderdetails.objects.filter(orderid=pk)
     context = {'orders': orders}
     context['title'] = "order details".title()
+    total = float(format(sum([order.subtotal for order in orders]),'.2f'))
+    context['total'] = total
     return render(request, 'company/order_detail.html', context)
