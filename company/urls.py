@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^orders', views.orders, name='orders'),
     url(r'^employees', views.employees, name='employees'),
     url(r'^employee/(?P<pk>\d+)/$',	views.employee_detail,	name='employee_detail'),
+    url(r'^order/(?P<pk>\d+)/$', views.order_detail, name='order_detail'),
 ]

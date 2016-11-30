@@ -1,0 +1,36 @@
+{%	extends	'company/base.html'	%}
+
+{%	block	content	%}
+<div class="order">
+<h4>
+{% if orders %}
+    <table class="table table-bordered">
+        <thead>
+      <tr>
+        <th>Suborder</th>
+        <th>Product ID</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+            <tbody>
+
+            {% for order in orders %}
+
+    <tr><td> {{order.orderdetailid}} </td>
+    <td> {{ order.productid }}</td>
+    <td> {{ order.unitprice }} </td>
+    <td> {{ order.quantity }}</td></tr>
+            {% endfor %}
+            </tbody>
+    </table>
+{% else %}
+   Order not found
+{% endif %}
+</h4>
+</div>
+<div class="row pull-right">
+    <h4><a	href="{% url 'orders' %}"><span class="glyphicon glyphicon-arrow-left"></span> </a></h4>
+</div>
+
+{%	endblock %}

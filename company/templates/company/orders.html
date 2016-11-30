@@ -28,6 +28,7 @@
           <td>{{ order.shippeddate }}</td>
           <td>{{ order.shipcompany }}</td>
           <td>{{ order.freightcharge }}</td>
+            <td><a	href="{% url 'order_detail' pk=order.pk %}"><span class="glyphicon glyphicon-search"></span> </a></td>
       </tr>
     {% endfor %}
 
